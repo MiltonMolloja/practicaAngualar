@@ -1,0 +1,34 @@
+
+            <!-- Default form login -->
+            <form class="text-center border border-light p-5">
+
+                <p class="h4 mb-4">Descuetno de Costo de Pasajes Segun Pasajero</p>
+
+                <!-- Costo -->
+                <input type="number" class="form-control mb-4" placeholder="Precio Original del Pasaje $_$"
+                required data-validation-required-message="Por Favor Escriba el Precio del Pasaje." name="txtPrecioOriginal"
+                [(ngModel)]="pasaje.precioOriginal"
+                (ngModelChange)="calcularPrecio()">
+
+                <!-- Tipo -->
+
+                  <div class="container mt-3">
+                      <form >
+                        <label >Elija El Tipo de Pasajero...</label>
+                        <select name="txtTipoPasajero" type="text" class="custom-select mb-3" [(ngModel)]="pasaje.tipoPasajero"
+                        required data-validation-required-message="Por Favor Elija El Tipo de Pasajero."
+                        (ngModelChange)="calcularPrecio()">
+                          <option value="M">Menor</option >
+                          <option value="A">Adulto</option>
+                          <option value="J">Jubilado</option>
+                        </select>
+                      </form>
+                    </div>
+
+                <!-- Sign in button -->
+                <button class="btn btn-info btn-block my-4"
+                type="text" *ngIf="pasaje.precioOriginal !=null && pasaje.tipoPasajero !=null">
+                Precio$ {{pasaje.precioConDesc}}
+              </button>
+            </form>
+            <!-- Default form login -->

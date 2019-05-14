@@ -1,18 +1,23 @@
 <div class="container">
-  <form id="contact" #encuestaForm="ngForm" >
+  <form id="contact" #formVotacion="ngForm" class="p-2 text-center mt-2 shadow rounded" >
     <h3>Encuesta</h3>
     <h4>Queremos saber tu Opinion</h4>
     <div>
-      <input placeholder="Tu correo Electronico" type="email"
-      name="Email" required [(ngModel)]="encuesta.email"
-      #email="ngModel" sin-espacios>
-      <div *ngIf="email?.errors" class="alert-danger">
-         No se permiten espacio en Blanco</div>
+        <div class="form-group">
+            <label class="text-white font-weight-bold"  for="email">Ingrese Legajo</label>
+            <input type="email" placeholder="Tu correo Electronico" [(ngModel)]="encuesta.email"
+            class="form-control rounded font-weight-bold text-dark text-center"
+            id="correo" name="email" #email="ngModel" ngModel sin-espacios required>
+            <div class="mensaje-de-error" *ngIf="email.touched && email.invalid">
+                <div class="text-danger font-weight-bolder alert alert-danger" *ngIf="email?.errors.required">Email requerido</div>
+                <div class="text-danger font-weight-bolder alert alert-danger" *ngIf="email?.errors.sinEspacios">No ingrese espacios</div>
+            </div>
+        </div>
     </div>
     <img>
     <dir>
       <div class="row-3">
-        <div class=" ">
+        <div class=" "  >
           <div class="row custom-control custom-radio custom-control-inline col-md-3 col-sm-3 col-xs-3">
             <input type="radio" class="custom-control-input" id="customRadio" name="example" value="0" required
               [(ngModel)]="encuesta.puntaje">
@@ -39,8 +44,8 @@
     <dir>
       <img>
       <div>
-        <button name="submit" type="button" id="contact-submit"
-          (click)="enviarEcuesta()"> Enviar Encuesta</button>
+          <button type="submit" (click)="enviarEcuesta( formVotacion );" class="btn btn-primary mt-2">Registrar</button>
+
       </div>
     </dir>
   </form>
@@ -64,21 +69,21 @@
   </table>
 </div>
 <dir>
-  <img >
-<div class="row ">
+  <img>
+  <div class="row ">
     <div class="col-md-3 col-sm-3 col-xs-3 alert alert-info">
       <label>Cantidad de Puntajes "No Sabe": {{contNoSabe}}</label>
     </div>
     <div class="col-md-3 col-sm-3 col-xs-3 alert alert-danger">
       <div>
-          <label>Cantidad de Puntajes "Malo": {{contMalo}}</label>
+        <label>Cantidad de Puntajes "Malo": {{contMalo}}</label>
       </div>
     </div>
     <div class="col-md-3 col-sm-3 col-xs-3 alert alert-secondary">
-        <label>Cantidad de Puntajes "Regular": {{contRegular}}</label>
+      <label>Cantidad de Puntajes "Regular": {{contRegular}}</label>
     </div>
     <div class="col-md-3 col-sm-3 col-xs-3 alert alert-success">
-        <label>Cantidad de Puntajes "Bueno": {{contBueno}}</label>
+      <label>Cantidad de Puntajes "Bueno": {{contBueno}}</label>
     </div>
   </div>
 </dir>

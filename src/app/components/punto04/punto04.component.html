@@ -1,35 +1,52 @@
-<dir>
-  <div class="row ">
-    <div class="col-md-3 col-sm-3 col-xs-3">
-      <label>De Parte de:</label>
-    </div>
-    <div class="col-md-3 col-sm-3 col-xs-3">
-      <div>
-        <input type="text" class="form-control" placeholder="Remitenete" required
-          data-validation-required-message="Por Favor Escriba El Nombre del Remitenete." name="txtNombreRemitente"
-          [(ngModel)]="mensaje.remintente" />
+<div>
+  <form class="p-2 text-center mt-2 shadow rounded" id="formulario" #formMsg="ngForm" action="">
+    <div class="row ">
+
+      <div class="col-md-3 col-sm-3 col-xs-3">
+        <label>De Parte de:</label>
+      </div>
+      <div class="col-md-3 col-sm-3 col-xs-3">
+        <div>
+          <input type="text" class="form-control" placeholder="Remitenete" required
+            data-validation-required-message="Por Favor Escriba El Nombre del Remitenete." name="txtNombreRemitente"
+            maxlength="20" [(ngModel)]="mensaje.remintente" #remintente="ngModel" ngModel sin-espacios required />
+        </div>
+        <div class="mensaje-de-error" *ngIf="remintente.touched && remintente.invalid">
+          <div class="text-danger font-weight-bolder alert alert-danger" *ngIf="remintente?.errors.required">Num.
+            destino requerido</div>
+        </div>
+      </div>
+      <div class="col-md-3 col-sm-3 col-xs-3">
+        <label>Numero del Celular</label>
+      </div>
+      <div class="col-md-3 col-sm-3 col-xs-3">
+        <input type="number" class="form-control" placeholder="Ej. 388501276" required
+          data-validation-required-message="Por Favor Escriba el numero de Celular" name="txtValorVenta"
+          [(ngModel)]="mensaje.destinatario" #destinatario="ngModel" ngModel required />
+        <div class="mensaje-de-error" *ngIf="remintente.touched && remintente.invalid">
+          <div class="text-danger font-weight-bolder alert alert-danger" *ngIf="remintente?.errors.required">Num.
+            destinatario requerido</div>
+        </div>
       </div>
     </div>
-    <div class="col-md-3 col-sm-3 col-xs-3">
-      <label>Numero del Celular</label>
-    </div>
-    <div class="col-md-3 col-sm-3 col-xs-3">
-      <input type="number" class="form-control" placeholder="Ej. 388501276" required
-        data-validation-required-message="Por Favor Escriba el numero de Celular" name="txtValorVenta"
-        [(ngModel)]="mensaje.destinatario" />
-    </div>
-  </div>
+  </form>
+
+
 
   <div class="form-group">
     <label for="message" class="h4 ">Mensaje</label>
     <textarea id="message" class="form-control" rows="5"
       placeholder="Escriba el Mensaje que desea Mandar. Maximo 150 Caracteres por Mensaje" required
-      [(ngModel)]="mensaje.contenido"></textarea>
+      [(ngModel)]="mensaje.contenido" #contenido="ngModel" ngModel required></textarea>
     <div class="help-block with-errors"></div>
+    <div class="mensaje-de-error" *ngIf="contenido.touched && contenido.invalid">
+      <div class="text-danger font-weight-bolder alert alert-danger" *ngIf="contenido?.errors.required">Contedido del
+        Mensaje a Enviar</div>
+    </div>
   </div>
 
 
-</dir>
+</div>
 <div class="row col-md-3 col-sm-3 col-xs-3">
 
 </div>
@@ -38,22 +55,22 @@
 </div>
 
 <div class="row ">
-    <div class="col-md-3 col-sm-3 col-xs-3">
-      <label></label>
-    </div>
-    <div class="col-md-3 col-sm-3 col-xs-3">
-      <div>
-          <button type="submit" class="btn btn-danger" id="sendMessageButton" (click)="clearMensaje()">Limpiar</button>
-      </div>
-    </div>
-    <div class="col-md-3 col-sm-3 col-xs-3">
-      <label></label>
-    </div>
-    <div class="col-md-3 col-sm-3 col-xs-3">
-        <button type="submit" class="btn btn-primary" id="sendMessageButton" (click)="enviarMensaje()"
-        data-toggle="modal" data-target="#myModal">Enviar</button>
+  <div class="col-md-3 col-sm-3 col-xs-3">
+    <label></label>
+  </div>
+  <div class="col-md-3 col-sm-3 col-xs-3">
+    <div>
+      <button type="submit" class="btn btn-danger" id="sendMessageButton" (click)="clearMensaje()">Limpiar</button>
     </div>
   </div>
+  <div class="col-md-3 col-sm-3 col-xs-3">
+    <label></label>
+  </div>
+  <div class="col-md-3 col-sm-3 col-xs-3">
+    <button type="submit" class="btn btn-primary" id="sendMessageButton" (click)="enviarMensaje(formMsg)" data-toggle="modal"
+      data-target="#myModal">Enviar</button>
+  </div>
+</div>
 
 <img>
 <div>
@@ -81,32 +98,32 @@
 
 <!-- The Modal -->
 <div class="modal" id="myModal">
-    <div class="modal-dialog">
-      <div class="modal-content">
+  <div class="modal-dialog">
+    <div class="modal-content">
 
-        <!-- Modal Header -->
-        <div class="modal-header">
-          <h4 class="modal-title">Mensaje Enviado.</h4>
-          <button type="button" class="close" data-dismiss="modal">&times;</button>
-        </div>
-
-        <!-- Modal body -->
-        <div class="modal-body">
-          De parte de : {{mensaje.remintente}}
-        </div>
-        <div class="modal-body">
-          Destinatario : {{mensaje.destinatario}}
-          </div>
-
-          <div class="modal-body">
-              Mensaje : {{mensaje.contenido}}
-            </div>
-
-        <!-- Modal footer -->
-        <div class="modal-footer">
-          <button type="button" class="btn btn-danger" data-dismiss="modal" (click)="clearMensaje()">Close</button>
-        </div>
-
+      <!-- Modal Header -->
+      <div class="modal-header">
+        <h4 class="modal-title">Mensaje Enviado.</h4>
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
       </div>
+
+      <!-- Modal body -->
+      <div class="modal-body">
+        De parte de : {{mensaje.remintente}}
+      </div>
+      <div class="modal-body">
+        Destinatario : {{mensaje.destinatario}}
+      </div>
+
+      <div class="modal-body">
+        Mensaje : {{mensaje.contenido}}
+      </div>
+
+      <!-- Modal footer -->
+      <div class="modal-footer">
+        <button type="button" class="btn btn-danger" data-dismiss="modal" (click)="clearMensaje()">Close</button>
+      </div>
+
     </div>
   </div>
+</div>

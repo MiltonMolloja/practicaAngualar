@@ -1,7 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl } from '@angular/forms';
+import { NgForm } from '@angular/forms';
 
 import { Encuesta } from "./../../models/punto05/encuesta";
+
 
 @Component({
   selector: 'app-punto05',
@@ -27,11 +29,16 @@ export class Punto05Component implements OnInit {
   ngOnInit() {
   }
 
+  public enviarEcuesta( ngForm: NgForm  )
+  {
 
-  public enviarEcuesta(){
-    this.clasificarPuntaje();
+    if( ngForm.valid == true  )
+    {
+      this.clasificarPuntaje();
     this.encuestas.push(this.encuesta);
     this.encuesta = new Encuesta();
+    }//
+
   }
 
   public clasificarPuntaje(){

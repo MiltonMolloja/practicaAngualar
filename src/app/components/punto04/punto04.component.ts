@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Mensaje } from "./../../models/punto04/mensaje";
+import { NgForm } from '@angular/forms';
 
 @Component({
   selector: 'app-punto04',
@@ -21,10 +22,12 @@ export class Punto04Component implements OnInit {
   ngOnInit() {
   }
 
-  public enviarMensaje(){
-    this.mensaje.fecha = new Date();
-    this.mensajes.push(this.mensaje);
-    //this.mensaje = new Mensaje();
+  public enviarMensaje( formMsg : NgForm){
+    if (formMsg.valid == true) {
+      this.mensaje.fecha = new Date();
+      this.mensajes.push(this.mensaje);
+      //this.mensaje = new Mensaje();
+    }
   }
 
   public clearMensaje(){

@@ -3,7 +3,7 @@ import { NgModule } from '@angular/core';
 
 import { AppRoutingModule } from './app-routing.module';
 import { FormsModule } from "@angular/forms";
-import { SinEspacios } from "./validaciones.directive";
+import { Invalida, Negativo, SinEspacios } from "./validaciones.directive";
 
 import { AppComponent } from './app.component';
 import { FooterComponent } from './components/footer/footer.component';
@@ -24,6 +24,8 @@ import { Punto05Component } from './components/punto05/punto05.component';
     Punto03Component,
     Punto04Component,
     Punto05Component,
+    Invalida,
+    Negativo,
     SinEspacios
   ],
   imports: [

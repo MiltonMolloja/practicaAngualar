@@ -1,6 +1,5 @@
 <div class="container">
   <h1>Calcular Alumno</h1>
-
   <form class="p-2 text-center mt-2 shadow rounded" id="formulario" #formAlumno="ngForm" action="">
     <div class="control-group form-group">
       <div class="controls">
@@ -20,13 +19,13 @@
         <div class="form-group">
             <label class="font-weight-bold" for="notacon">Nota de Concepto:</label>
             <input type="number" [(ngModel)]="alumno.notaConcepto"
-             class="form-control rounded font-weight-bold text-dark text-center" 
+             class="form-control rounded font-weight-bold text-dark text-center"
              id="notacon" name="notacon" min="0" max="10" maxlength="2"
               #vnotacon="ngModel" ngModel invalida required>
             <div class="mensaje-de-error" *ngIf="vnotacon.touched && vnotacon.invalid">
-                <div class="text-danger font-weight-bolder" *ngIf="vnotacon.errors.required">Nota requerida</div>
-                <div class="text-danger font-weight-bolder" *ngIf="vnotacon.errors.maxlength">El numero de legajo debe tener entre 1 y 2 digitos</div>
-                <div class="text-danger font-weight-bolder" *ngIf="vnotacon.errors.invalida">La nota debe estar entre 0 y 10</div>
+                <div class="text-danger font-weight-bolder" *ngIf="vnotacon?.errors.required">Nota requerida</div>
+                <div class="text-danger font-weight-bolder" *ngIf="vnotacon?.errors.maxlength">El numero de legajo debe tener entre 1 y 2 digitos</div>
+                <div class="text-danger font-weight-bolder" *ngIf="vnotacon?.errors.invalida">La nota debe estar entre 0 y 10</div>
             </div>
         </div>
     </div>
@@ -35,15 +34,15 @@
           <div class="form-group">
               <label class="font-weight-bold" for="Escrita">Nota de Evaluación Escrita:</label>
               <input type="number" [(ngModel)]="alumno.notaEscrita"
-               class="form-control rounded font-weight-bold text-dark text-center" 
+               class="form-control rounded font-weight-bold text-dark text-center"
                id="Escrita" name="Escrita" min="0" max="10" maxlength="2"
                 #Escrita="ngModel" ngModel invalida required>
               <div class="mensaje-de-error" *ngIf="Escrita.touched && Escrita.invalid">
-                  <div class="text-danger font-weight-bolder" *ngIf="Escrita.errors.required">Nota requerida</div>
-                  <div class="text-danger font-weight-bolder" *ngIf="Escrita.errors.maxlength">El numero de legajo debe tener entre 1 y 2 digitos</div>
-                  <div class="text-danger font-weight-bolder" *ngIf="Escrita.errors.invalida">La nota debe estar entre 0 y 10</div>
+                  <div class="text-danger font-weight-bolder" *ngIf="Escrita?.errors.required">Nota requerida</div>
+                  <div class="text-danger font-weight-bolder" *ngIf="Escrita?.errors.maxlength">El numero de legajo debe tener entre 1 y 2 digitos</div>
+                  <div class="text-danger font-weight-bolder" *ngIf="Escrita?.errors.invalida">La nota debe estar entre 0 y 10</div>
               </div>
-          </div>       
+          </div>
       </div>
     </div>
     <div class="control-group form-group">
@@ -51,20 +50,20 @@
           <div class="form-group">
               <label class="font-weight-bold" for="notacon">Nota de Evaluación Oral:</label>
               <input type="number" [(ngModel)]="alumno.notaOral"
-               class="form-control rounded font-weight-bold text-dark text-center" 
+               class="form-control rounded font-weight-bold text-dark text-center"
                id="notacon" name="notacon" min="0" max="10" maxlength="2"
-                #Oral="ngModel" ngModel invalida required>
+                #Oral="ngModel" invalida ngModel  required>
               <div class="mensaje-de-error" *ngIf="Oral.touched && Oral.invalid">
-                  <div class="text-danger font-weight-bolder" *ngIf="Oral.errors.required">Nota requerida</div>
-                  <div class="text-danger font-weight-bolder" *ngIf="Oral.errors.maxlength">El numero de legajo debe tener entre 1 y 2 digitos</div>
-                  <div class="text-danger font-weight-bolder" *ngIf="Oral.errors.invalida">La nota debe estar entre 0 y 10</div>
+                  <div class="text-danger font-weight-bolder" *ngIf="Oral?.errors.required">Nota requerida</div>
+                  <div class="text-danger font-weight-bolder" *ngIf="Oral?.errors.maxlength">El numero de legajo debe tener entre 1 y 2 digitos</div>
+                  <div class="text-danger font-weight-bolder" *ngIf="Oral?.errors.invalida">La nota debe estar entre 0 y 10</div>
               </div>
           </div>
       </div>
     </div>
 
-    <button type="submit" class="btn btn-info" (click)="calcularNotas(formAlumno)" data-toggle="modal"
-      data-target="#myModal">Calcular Nota</button>
+    <button type="submit" class="btn btn-info" (click)="calcularNotas(formAlumno)"
+               data-toggle="modal" data-target="#myModal" >Calcular Nota</button>
   </form>
 </div>
 
@@ -96,8 +95,8 @@
 
 
 <!-- The Modal -->
-<div class="modal fade" id="myModal">
-  <div class="modal-dialog">
+<div class="modal fade" id="myModal" *ngIf="formAlumno.valid==true">
+  <div class="modal-dialog"  >
     <div class="modal-content">
 
       <!-- Modal Header -->

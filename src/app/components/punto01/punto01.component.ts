@@ -24,7 +24,7 @@ export class Punto01Component implements OnInit {
   }
 
   public calcularNotas( form: NgForm ){
-    if (form.valid== true) {
+    if (form.valid == true) {
     this.alumno.promedio =  (this.alumno.notaConcepto + this.alumno.notaEscrita + this.alumno.notaOral) / 3;
     if (this.alumno.promedio >= 7) {
         this.alumno.estado = "PROMOCIONADO";

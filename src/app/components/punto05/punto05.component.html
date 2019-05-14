@@ -4,40 +4,46 @@
     <h4>Queremos saber tu Opinion</h4>
     <div>
         <div class="form-group">
-            <label class="text-white font-weight-bold"  for="email">Ingrese Legajo</label>
-            <input type="email" placeholder="Tu correo Electronico" [(ngModel)]="encuesta.email"
+          <label >Ingrese el Correo Electronico</label>
+            <input type="email" [(ngModel)]="encuesta.email"
             class="form-control rounded font-weight-bold text-dark text-center"
-            id="correo" name="email" #email="ngModel" ngModel sin-espacios required>
+            id="correo" name="email" #email="ngModel" ngModel sin-espacios [pattern]="unamePattern" required>
             <div class="mensaje-de-error" *ngIf="email.touched && email.invalid">
                 <div class="text-danger font-weight-bolder alert alert-danger" *ngIf="email?.errors.required">Email requerido</div>
                 <div class="text-danger font-weight-bolder alert alert-danger" *ngIf="email?.errors.sinEspacios">No ingrese espacios</div>
+                <div class="text-danger font-weight-bolder alert alert-danger" *ngIf="email?.errors.pattern">Ingrese Email Valido</div>
             </div>
         </div>
     </div>
     <img>
     <dir>
       <div class="row-3">
-        <div class=" "  >
-          <div class="row custom-control custom-radio custom-control-inline col-md-3 col-sm-3 col-xs-3">
+          <label >Elija El Puntaje: </label>
+        <div >
+          <div class="custom-control custom-radio custom-control-inline col-md-3 col-sm-3 col-xs-3">
+
             <input type="radio" class="custom-control-input" id="customRadio" name="example" value="0" required
               [(ngModel)]="encuesta.puntaje">
             <label class="custom-control-label" for="customRadio">No Sabe</label>
           </div>
           <div class="row-3 custom-control custom-radio custom-control-inline col-md-3 col-sm-3 col-xs-3">
-            <input type="radio" class="custom-control-input" id="customRadio2" name="example" value="1" equired
-              [(ngModel)]="encuesta.puntaje">
+            <input type="radio" class="custom-control-input" id="customRadio2" name="example"
+            value="1" equired #puntaje="ngModel" ngModel [(ngModel)]="encuesta.puntaje">
             <label class="custom-control-label" for="customRadio2">Malo</label>
           </div>
           <div class="row-3 custom-control custom-radio custom-control-inline col-md-3 col-sm-3 col-xs-3">
-            <input type="radio" class="custom-control-input" id="customRadio3" name="example" value="2" equired
-              [(ngModel)]="encuesta.puntaje">
+            <input type="radio" class="custom-control-input" id="customRadio3" name="example"
+             value="2" equired #puntaje="ngModel" ngModel [(ngModel)]="encuesta.puntaje">
             <label class="custom-control-label" for="customRadio3">Regular</label>
           </div>
           <div class="row-3 custom-control custom-radio custom-control-inline col-md-3 col-sm-3 col-xs-3">
-            <input type="radio" class="custom-control-input" id="customRadio4" name="example" value="3" equired
-              [(ngModel)]="encuesta.puntaje">
+            <input type="radio" class="custom-control-input" id="customRadio4" name="example"
+             value="3" equired #puntaje="ngModel" ngModel [(ngModel)]="encuesta.puntaje">
             <label class="custom-control-label" for="customRadio4">Bueno</label>
           </div>
+          <div class="mensaje-de-error" *ngIf="puntaje.touched && puntaje.invalid">
+            <div class="text-danger font-weight-bolder alert alert-danger" *ngIf="puntaje?.errors.required">Puntaje requerido</div>
+        </div>
         </div>
       </div>
     </dir>

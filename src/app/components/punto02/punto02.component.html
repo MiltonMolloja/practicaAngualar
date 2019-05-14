@@ -43,7 +43,7 @@
   <div *ngIf="!mostrarCargarValore">
     <div class="panel panel-default">
       <div class="panel-heading">
-        <dir>
+        <div>
           <div class="row pad-adjust">
             <div class="col-md-6 col-sm-6 col-xs-6 pad-adjust">
               <label>El Valor de Compra es: {{valorCompraActual}}</label>
@@ -64,23 +64,26 @@
                   <div class="text-danger font-weight-bolder" *ngIf="venta?.errors.negativo">El monto debe ser mayor a cero</div>
               </div>
           </div>
-        </dir>
-        <dir>
+        </div>
+        <div>
           <div>
             <form>
               <div class="custom-control custom-radio custom-control-inline">
                 <input type="radio" class="custom-control-input" id="customRadio" name="txtTipoCambio" value="true"
-                  [(ngModel)]="moneda.tipoCambio">
+                  [(ngModel)]="moneda.tipoCambio" required>
                 <label class="custom-control-label" for="customRadio">Cambio de $ (pesos) a USD (dólar)</label>
               </div>
               <div class="custom-control custom-radio custom-control-inline">
                 <input type="radio" class="custom-control-input" id="customRadio2" name="txtTipoCambio" value="false"
-                  [(ngModel)]="moneda.tipoCambio">
+                  [(ngModel)]="moneda.tipoCambio" #tipo="ngModel" ngModel required>
                 <label class="custom-control-label" for="customRadio2">Cambio de USD (dólar) a $ (pesos)</label>
               </div>
+              <div class="mensaje-de-error" *ngIf="tipo.touched && tipo.invalid">
+                <div class="text-danger font-weight-bolder" *ngIf="tipo?.errors.required">Tipo requerido</div>
+            </div>
             </form>
           </div>
-        </dir>
+        </div>
 
         <div class="row">
           <div class="col-md-3 col-sm-3 col-xs-3">

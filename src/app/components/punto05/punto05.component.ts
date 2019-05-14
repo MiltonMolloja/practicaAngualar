@@ -19,6 +19,8 @@ export class Punto05Component implements OnInit {
   contRegular: number = 0;
   contBueno: number = 0;
 
+  unamePattern = "^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$";
+
   encuestas: Array<Encuesta>;
 
   constructor() {

@@ -1,43 +1,69 @@
 <div class="container">
   <h1>Calcular Alumno</h1>
-  <form name="sentMessage" id="contactForm" novalidate>
+
+  <form class="p-2 text-center mt-2 shadow rounded" id="formulario" #formAlumno="ngForm" action="">
     <div class="control-group form-group">
       <div class="controls">
         <label>Numero de Legajo del Alumno:</label>
-        <input class="form-control" required minlength="2" maxlength="4"
-          name="txtNumeroDeLegajo" [(ngModel)]="alumno.numeroLegajo" type="number" />
+        <input type="text" [(ngModel)]="alumno.numeroLegajo"
+          class="form-control rounded font-weight-bold text-dark text-center" id="legajo" name="legajo" minlength="4"
+          maxlength="5" #legajo="ngModel" required>
+        <div class="mensaje-de-error" *ngIf="legajo.touched && !legajo.valid">
+          <div class="text-danger font-weight-bolder" *ngIf="legajo?.errors.required">Legajo requerido.</div>
+          <div class="text-danger font-weight-bolder" *ngIf="legajo?.errors.minlength">
+            El numero de legajo debe ser de al menos {{ legajo?.errors.minlength.requiredLength }} digitos
+          </div>
+        </div>
       </div>
-      <div>
-          <div>Numero de Legajo es Rquerido</div>
-          <div>Numero de Legajo de tener 4 caracteres Ej. 1235 </div>
+    </div>
+    <div class="control-group form-group">
+        <div class="form-group">
+            <label class="font-weight-bold" for="notacon">Nota de Concepto:</label>
+            <input type="number" [(ngModel)]="alumno.notaConcepto"
+             class="form-control rounded font-weight-bold text-dark text-center" 
+             id="notacon" name="notacon" min="0" max="10" maxlength="2"
+              #vnotacon="ngModel" ngModel invalida required>
+            <div class="mensaje-de-error" *ngIf="vnotacon.touched && vnotacon.invalid">
+                <div class="text-danger font-weight-bolder" *ngIf="vnotacon.errors.required">Nota requerida</div>
+                <div class="text-danger font-weight-bolder" *ngIf="vnotacon.errors.maxlength">El numero de legajo debe tener entre 1 y 2 digitos</div>
+                <div class="text-danger font-weight-bolder" *ngIf="vnotacon.errors.invalida">La nota debe estar entre 0 y 10</div>
+            </div>
         </div>
     </div>
     <div class="control-group form-group">
       <div class="controls">
-        <label>Nota de Concepto:</label>
-        <input class="form-control" name="txtNotaConcepto" required
-          data-validation-required-message="Por Favor Escriba La nota de Concepto." [(ngModel)]="alumno.notaConcepto"
-          type="number" />
+          <div class="form-group">
+              <label class="font-weight-bold" for="Escrita">Nota de Evaluación Escrita:</label>
+              <input type="number" [(ngModel)]="alumno.notaEscrita"
+               class="form-control rounded font-weight-bold text-dark text-center" 
+               id="Escrita" name="Escrita" min="0" max="10" maxlength="2"
+                #Escrita="ngModel" ngModel invalida required>
+              <div class="mensaje-de-error" *ngIf="Escrita.touched && Escrita.invalid">
+                  <div class="text-danger font-weight-bolder" *ngIf="Escrita.errors.required">Nota requerida</div>
+                  <div class="text-danger font-weight-bolder" *ngIf="Escrita.errors.maxlength">El numero de legajo debe tener entre 1 y 2 digitos</div>
+                  <div class="text-danger font-weight-bolder" *ngIf="Escrita.errors.invalida">La nota debe estar entre 0 y 10</div>
+              </div>
+          </div>       
       </div>
     </div>
     <div class="control-group form-group">
       <div class="controls">
-        <label>Nota de Evaluación Escrita:</label>
-        <input class="form-control" name="txtNotaEscrita" required
-          data-validation-required-message="Por Favor Escriba La nota Escriba." [(ngModel)]="alumno.notaEscrita"
-          type="number">
-      </div>
-    </div>
-    <div class="control-group form-group">
-      <div class="controls">
-        <label>Nota de Evaluación Oral:</label>
-        <input class="form-control" name="txtnota" required
-          data-validation-required-message="Por Favor Escriba La nota Oral." [(ngModel)]="alumno.notaOral"
-          type="number">
+          <div class="form-group">
+              <label class="font-weight-bold" for="notacon">Nota de Evaluación Oral:</label>
+              <input type="number" [(ngModel)]="alumno.notaOral"
+               class="form-control rounded font-weight-bold text-dark text-center" 
+               id="notacon" name="notacon" min="0" max="10" maxlength="2"
+                #Oral="ngModel" ngModel invalida required>
+              <div class="mensaje-de-error" *ngIf="Oral.touched && Oral.invalid">
+                  <div class="text-danger font-weight-bolder" *ngIf="Oral.errors.required">Nota requerida</div>
+                  <div class="text-danger font-weight-bolder" *ngIf="Oral.errors.maxlength">El numero de legajo debe tener entre 1 y 2 digitos</div>
+                  <div class="text-danger font-weight-bolder" *ngIf="Oral.errors.invalida">La nota debe estar entre 0 y 10</div>
+              </div>
+          </div>
       </div>
     </div>
 
-    <button type="submit" class="btn btn-info" (click)="calcularNotas()" data-toggle="modal"
+    <button type="submit" class="btn btn-info" (click)="calcularNotas(formAlumno)" data-toggle="modal"
       data-target="#myModal">Calcular Nota</button>
   </form>
 </div>
@@ -87,7 +113,8 @@
         </div>
         <div>
           <label *ngIf="alumno.promedio>=7" class="alert-success"> El Alumno ha sido ... {{alumno.estado}}</label>
-          <label *ngIf="alumno.promedio>=5&&alumno.promedio<7" class="alert alert-info"> El Alumno ha sido ... {{alumno.estado}}</label>
+          <label *ngIf="alumno.promedio>=5&&alumno.promedio<7" class="alert alert-info"> El Alumno ha sido ...
+            {{alumno.estado}}</label>
           <label *ngIf="alumno.promedio<=4" class="alert-danger"> El Alumno ha sido ... {{alumno.estado}}</label>
         </div>
       </div>

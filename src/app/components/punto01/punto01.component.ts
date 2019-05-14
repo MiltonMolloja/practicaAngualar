@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 
 import { Alumno } from "./../../models/alumno";
+import { NgForm } from '@angular/forms';
 
 @Component({
   selector: 'app-punto01',
@@ -22,7 +23,8 @@ export class Punto01Component implements OnInit {
   ngOnInit() {
   }
 
-  public calcularNotas(){
+  public calcularNotas( form: NgForm ){
+    if (form.valid== true) {
     this.alumno.promedio =  (this.alumno.notaConcepto + this.alumno.notaEscrita + this.alumno.notaOral) / 3;
     if (this.alumno.promedio >= 7) {
         this.alumno.estado = "PROMOCIONADO";
@@ -35,6 +37,7 @@ export class Punto01Component implements OnInit {
     }
     this.alumnos.push(this.alumno);
     //this.alumno = new Alumno();
+  }
   }
 
   public clearAlumno(){

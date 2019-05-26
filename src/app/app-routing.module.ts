@@ -9,7 +9,7 @@ import { Punto01Component } from './components/punto01/punto01.component';
 import { Punto02Component } from './components/punto02/punto02.component';
 import { Punto03Component } from './components/punto03/punto03.component';
 import { Punto04Component } from './components/punto04/punto04.component';
-import { Punto05Component } from './components/punto05/punto05.component';
+  import { Punto05Component } from './components/punto05/punto05.component';
 
 
 const routes: Routes = [

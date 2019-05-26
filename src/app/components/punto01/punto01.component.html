@@ -126,3 +126,19 @@
     </div>
   </div>
 </div>
+
+<div class="row ">
+  <div class="col-md-3 col-sm-3 col-xs-3 alert alert-info">
+    <label>Desaprobados: {{cantDescaprobados}}</label>
+  </div>
+  <div class="col-md-3 col-sm-3 col-xs-3 alert alert-secondary">
+    <label>Aprobados: {{cantAprobados}}</label>
+  </div>
+  <div class="col-md-3 col-sm-3 col-xs-3 alert alert-success">
+    <label>Promocionados: {{cantaPromocionados}}</label>
+  </div>
+</div>
+
+<div class="modal-footer">
+  <button type="button" class="btn btn-danger" (click)="resetApp()">Reiciar App</button>
+</div>

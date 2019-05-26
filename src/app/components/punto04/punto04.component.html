@@ -88,7 +88,7 @@
       <tr *ngFor="let item of mensajes">
         <th>{{item.remintente}}</th>
         <td>{{item.destinatario}}</td>
-        <td>{{item.fecha}}</td>
+        <td>{{item.fecha | date:'dd-MM-yyyy'}}</td>
         <td>{{item.contenido}}</td>
       </tr>
     </tbody>
